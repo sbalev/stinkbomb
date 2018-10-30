@@ -53,4 +53,8 @@ class Crane {
   void turn() {
     angle += angularVelocity;
   }
+  
+  void move() {
+    x = mouseX;
+  }
 }
