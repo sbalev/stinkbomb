@@ -18,4 +18,8 @@ void draw() {
   crane.move();
   crane.turn();
   bomb.move();
+  
+  if (bomb.isOutside()) {
+    bomb = new Bomb();
+  }
 }

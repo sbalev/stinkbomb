@@ -37,4 +37,8 @@ class Bomb {
       vy *= -ELASTICITY;
     }
   }
+  
+  boolean isOutside() {
+    return x < -radius || x > width + radius;
+  }
 }
