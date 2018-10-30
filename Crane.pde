@@ -1,3 +1,6 @@
+// how much of its speed the wrecking ball gives to a bomb when it hits it
+final float VELOCITY_AMPLIFICATION = 5.0;
+
 class Crane {
   float x, y; // point where the cable of the wrecking ball is attached
   float cableLength;
@@ -56,5 +59,14 @@ class Crane {
   
   void move() {
     x = mouseX;
+  }
+  
+  void hit(Bomb bomb) {
+    float ballX = x + cableLength * cos(angle);
+    float ballY = y + cableLength * sin(angle);
+    // check if the wrecking ball and the bomb intersect
+    if (dist(ballX, ballY, bomb.x, bomb.y) < ballRadius + bomb.radius) {
+      bomb.setVelocity(VELOCITY_AMPLIFICATION * cableLength * angularVelocity, angle + HALF_PI);
+    }
   }
 }

@@ -13,6 +13,8 @@ void draw() {
   crane.display();
   bomb.display();
   
+  crane.hit(bomb);
+  
   crane.move();
   crane.turn();
   bomb.move();
