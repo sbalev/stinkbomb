@@ -1,5 +1,6 @@
 Game game;
 boolean intro = true;
+boolean pause = false;
 Crane introCrane;
 Button playButton;
 
@@ -15,6 +16,8 @@ void draw() {
     displayIntro();
   } else if (game.isOver()) {
     displayGameOver();
+  } else if (pause) {
+    displayPause();
   } else {
     game.display();
     game.step();
@@ -31,6 +34,12 @@ void mousePressed() {
   }
 }
 
+void keyPressed() {
+  if (key == ' ' && !intro && !game.isOver()) {
+    pause = !pause;
+  }
+}
+
 void displayIntro() {
   background(0);
   introCrane.display();
@@ -39,12 +48,9 @@ void displayIntro() {
     "The only defence weapon you have is a wrecking ball.\n" +
     "Kick away their stink bombs ASAP.\n" +
     "Keep an eye on the air quality gauge!\n" +
-    "Use the mouse to move the crane.\n" +
+    "Use the mouse to move the crane. Press SPACE to pause/resume.\n" +
     "Ready?";
-  fill(255);
-  textSize(36);
-  textAlign(CENTER, CENTER);
-  text(text, width / 2, height / 2);
+  displayBigText(text);
   playButton.display();
 }
 
@@ -57,9 +63,24 @@ void displayGameOver() {
   String text = "GAME OVER\n" +
     "Your score: " + game.score + "\n" +
     "Want to try again?";
+  displayBigText(text);
+  playButton.display();
+}
+
+void displayPause() {
+  game.display();
+  noStroke();
+  fill(0, 192);
+  rectMode(CORNER);
+  rect(0, 0, width, height);
+  String text = "GAME PAUSED\n" +
+    "Press SPACE to resume.";
+  displayBigText(text);
+}
+
+void displayBigText(String text) {
   fill(255);
   textSize(36);
   textAlign(CENTER, CENTER);
   text(text, width / 2, height / 2);
-  playButton.display();
 }
