@@ -1,3 +1,4 @@
+final float GRAVITY = 0.05;
 final float ELASTICITY = 0.95;
 final int TRACE_SIZE = 16;
 
