@@ -1,6 +1,7 @@
-final float GRAVITY = 0.05;
 final float ELASTICITY = 0.95;
 final int TRACE_SIZE = 16;
+final float BOMB_PROBABILITY = 0.005;
+final float BOMB_POLLUTION = 0.0001;
 
 class Bomb {
   float x, y; // position of the center
