@@ -1,14 +1,17 @@
 // universal constants
 final float GRAVITY = 0.05;
 final float BOMB_PROBABILITY = 0.005;
-final float BOMB_PROBABILITY_INCREMENT = 0.002; // for every 100 points scored
+final float BOMB_PROBABILITY_INCREMENT = 0.002; // per level
 final float BOMB_POLLUTION = 0.0001;
 final float POLLUTION_DISSIPATION = 0.0001;
+final int BOMBS_PER_LEVEL = 100;
 
 Crane crane;
 ArrayList<Bomb> bombs;
 float airQuality;
 int score;
+int level;
+int bombsLeft; // to change level
 
 void setup() {
   size(1600, 900);
@@ -16,6 +19,8 @@ void setup() {
   bombs = new ArrayList<Bomb>();
   airQuality = 1;
   score = 0;
+  level = 0;
+  bombsLeft = BOMBS_PER_LEVEL;
 }
 
 void draw() {
@@ -37,7 +42,7 @@ void display() {
   rect(0, 0, map(airQuality, 0, 1, 0, width), 10);
   fill(0);
   textAlign(TOP, LEFT);
-  text("Score " + score, 0, 20);
+  text("Score " + score + "     Level " + level, 0, 20);
 }
 
 void hit() {
@@ -55,17 +60,20 @@ void deleteOutside() {
     Bomb bomb = bombs.get(i);
     if (bomb.isOutside()) {
       bombs.remove(i);
-      if (bomb.toxic) {
-        score++;
-      } else {
-        score += 2;
+      score++;
+      bombsLeft--;
+      if (bombsLeft == 0) {
+        level++;
+        bombsLeft = BOMBS_PER_LEVEL;
+        crane.changeDir();
       }
+      if (!bomb.toxic) score++;
     }
   }
 }
 
 void addBomb() {
-  if (random(1) < BOMB_PROBABILITY + (score / 100) * BOMB_PROBABILITY_INCREMENT) {
+  if (random(1) < BOMB_PROBABILITY + level * BOMB_PROBABILITY_INCREMENT) {
     bombs.add(new Bomb());
   }
 }

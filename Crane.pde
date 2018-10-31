@@ -69,4 +69,8 @@ class Crane {
       bomb.setVelocity(VELOCITY_AMPLIFICATION * cableLength * angularVelocity, angle + HALF_PI);
     }
   }
+  
+  void changeDir() {
+    angularVelocity *= -1;
+  }
 }
