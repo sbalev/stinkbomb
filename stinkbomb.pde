@@ -13,22 +13,21 @@ void setup() {
 void draw() {
   if (intro) {
     displayIntro();
+  } else if (game.isOver()) {
+    displayGameOver();
   } else {
     game.display();
     game.step();
-    if (game.isOver()) {
-      fill(255, 0, 0, 64);
-      textSize(72);
-      textAlign(CENTER, CENTER);
-      text("GAME OVER", width / 2, height / 2);
-      noLoop();
-    }
   }
 }
 
 void mousePressed() {
-  if (intro && playButton.isInside(mouseX, mouseY)) {
-    intro = false;
+  if (playButton.isInside(mouseX, mouseY)) {
+    if (intro) {
+      intro = false;
+    } else if (game.isOver()) {
+      game = new Game();
+    }
   }
 }
 
@@ -36,7 +35,6 @@ void displayIntro() {
   background(0);
   introCrane.display();
   introCrane.turn();
-  textSize(36);
   String text = "Villains attack!\n" +
     "The only defence weapon you have is a wrecking ball.\n" +
     "Kick away their stink bombs ASAP.\n" +
@@ -44,6 +42,23 @@ void displayIntro() {
     "Use the mouse to move the crane.\n" +
     "Ready?";
   fill(255);
+  textSize(36);
+  textAlign(CENTER, CENTER);
+  text(text, width / 2, height / 2);
+  playButton.display();
+}
+
+void displayGameOver() {
+  game.display();
+  noStroke();
+  fill(0, 192);
+  rectMode(CORNER);
+  rect(0, 0, width, height);
+  String text = "GAME OVER\n" +
+    "Your score: " + game.score + "\n" +
+    "Want to try again?";
+  fill(255);
+  textSize(36);
   textAlign(CENTER, CENTER);
   text(text, width / 2, height / 2);
   playButton.display();

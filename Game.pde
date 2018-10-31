@@ -42,9 +42,9 @@ class Game {
     rectMode(CORNER);
     rect(0, 0, map(airQuality, 0, 1, 0, width), 10);
     fill(0);
-    textSize(12);
+    textSize(18);
     textAlign(TOP, LEFT);
-    text("Score " + score + "     Level " + level, 0, 20);
+    text("Score " + score + "     Level " + level, 0, 24);
   }
 
   void hit() {
