@@ -45,7 +45,7 @@ void displayIntro() {
   introCrane.display();
   introCrane.turn();
   String text = "Villains attack!\n" +
-    "The only defence weapon you have is a wrecking ball.\n" +
+    "The only defense weapon you have is a wrecking ball.\n" +
     "Kick away their stink bombs ASAP.\n" +
     "Keep an eye on the air quality gauge!\n" +
     "Use the mouse to move the crane. Press SPACE to pause/resume.\n" +
