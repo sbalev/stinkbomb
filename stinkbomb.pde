@@ -52,9 +52,14 @@ void move() {
 
 void deleteOutside() {
   for (int i = bombs.size() - 1; i >= 0; i--) {
-    if (bombs.get(i).isOutside()) {
+    Bomb bomb = bombs.get(i);
+    if (bomb.isOutside()) {
       bombs.remove(i);
-      score++;
+      if (bomb.toxic) {
+        score++;
+      } else {
+        score += 2;
+      }
     }
   }
 }
