@@ -1,5 +1,8 @@
-// universal constant
+// universal constants
 final float GRAVITY = 0.05;
+final float BOMB_PROBABILITY = 0.005;
+final float BOMB_PROBABILITY_INCREMENT = 0.002; // for every 100 points scored
+final float BOMB_POLLUTION = 0.0001;
 final float POLLUTION_DISSIPATION = 0.0001;
 
 Crane crane;
@@ -57,7 +60,7 @@ void deleteOutside() {
 }
 
 void addBomb() {
-  if (random(1) < BOMB_PROBABILITY) {
+  if (random(1) < BOMB_PROBABILITY + (score / 100) * BOMB_PROBABILITY_INCREMENT) {
     bombs.add(new Bomb());
   }
 }
