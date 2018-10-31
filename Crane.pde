@@ -7,29 +7,31 @@ class Crane {
   float ballRadius;
   float angle;
   float angularVelocity;
+  color col;
   
-  Crane(float x, float y, float cableLength, float ballRadius, float angularVelocity) {
+  Crane(float x, float y, float cableLength, float ballRadius, float angle, float angularVelocity, color col) {
     this.x = x;
     this.y = y;
     this.cableLength = cableLength;
     this.ballRadius = ballRadius;
-    angle = HALF_PI;
+    this.angle = angle;
     this.angularVelocity = angularVelocity;
+    this.col = col;
   }
   
   Crane() {
-    this(width / 2, height - 110, 80, 20, TWO_PI / 240);
+    this(width / 2, height - 110, 80, 20, 0, TWO_PI / 240, color(0));
   }
   
   void display() {
     // the wrecking ball
     float ballX = x + cableLength * cos(angle);
     float ballY = y + cableLength * sin(angle);
-    stroke(0);
+    stroke(col);
     strokeWeight(3);
     line(x, y, ballX, ballY);
     noStroke();
-    fill(0);
+    fill(col);
     ellipseMode(RADIUS);
     ellipse(ballX, ballY, ballRadius, ballRadius);
     
@@ -38,7 +40,7 @@ class Crane {
     float y1 = y + cableLength + ballRadius;
     float x2 = x1 + cableLength;
     float y2 = y1;
-    stroke(0);
+    stroke(col);
     strokeWeight(5);
     line(x, y, x1, y1);
     line(x1, y1, x2, y2);

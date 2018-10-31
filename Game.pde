@@ -22,7 +22,6 @@ class Game {
   }
 
   void step() {
-    display();
     hit();
     move();
     deleteOutside();
@@ -40,8 +39,10 @@ class Game {
     for (Bomb bomb : bombs) bomb.display();
     noStroke();
     fill(lerpColor(color(255, 0, 0), color(0, 255, 0), airQuality));
+    rectMode(CORNER);
     rect(0, 0, map(airQuality, 0, 1, 0, width), 10);
     fill(0);
+    textSize(12);
     textAlign(TOP, LEFT);
     text("Score " + score + "     Level " + level, 0, 20);
   }
