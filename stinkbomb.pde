@@ -43,6 +43,8 @@ void mousePressed() {
 void keyPressed() {
   if (key == ' ' && !intro && !game.isOver()) {
     pause = !pause;
+  } else if (key == 's') {
+    save("screenshot.png");
   }
 }
 
