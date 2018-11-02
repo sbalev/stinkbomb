@@ -46,6 +46,14 @@ class Game {
     textAlign(TOP, LEFT);
     text("Score " + score + "     Level " + level, 0, 24);
   }
+  
+  int getScore() {
+    return score;
+  }
+  
+  int getKickedBombs() {
+    return (level + 1) * BOMBS_PER_LEVEL - bombsLeft;
+  }
 
   void hit() {
     for (Bomb bomb : bombs) crane.hit(bomb);
