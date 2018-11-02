@@ -1,5 +1,5 @@
 final float BOMB_PROBABILITY = 0.005;
-final float BOMB_PROBABILITY_INCREMENT = 0.002; // per level
+final float BOMB_PROBABILITY_INCREMENT = 0.001; // per level
 final float BOMB_POLLUTION = 0.0001;
 final float POLLUTION_DISSIPATION = 0.0001;
 final int BOMBS_PER_LEVEL = 100;
